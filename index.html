@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Detection Monitoring</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Add this in your HTML file within the <body> tag -->
+<audio id="alert-sound" src="alert.mp3" preload="auto"></audio>
+
+    <div class="container">
+        <h1>Gas Detection Monitoring Dashboard</h1>
+        <div class="status">
+            <h2>Current Gas Levels</h2>
+            <!-- <p id="gas-level">0 ppm</p> -->
+            <h4 id="status" class="status"></h4>
+        </div>
+
+        <div id="helmet-info">
+            <h2>Helmet ID : <span id="helmet-id">N/A</span></h2>
+            <p>Smoke & Flammable Gas Level : <span id="mq2-level">0</span> ppm</p>
+            <p>Carbon Monoxide Level : <span id="mq7-level">0</span> ppm</p>
+            
+        </div>
+         
+
+                 <!-- Warning Banner -->
+        <div id="warning-banner" class="warning-banner">
+            <span id="warning-message"></span>
+            <button id="close-banner" class="close-banner">X</button>
+        </div>
+        <div id="charts">
+            <canvas id="mq2Chart"></canvas>
+            <canvas id="mq7Chart"></canvas>
+        </div>
+      
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="app.js"></script>
+</body>
+</html>

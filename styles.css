@@ -1,0 +1,128 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+#helmet-info {
+    background-color: #f3f3f3;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+#alert-message {
+    color: red;
+    font-weight: bold;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.status {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#gas-level {
+    font-size: 2rem;
+    color: #2d6a4f;
+}
+
+#status.safe {
+    color: green;
+}
+
+#status.danger {
+    color: red;
+}
+
+.chart {
+    width: 100%;
+    margin-top: 30px;
+}
+
+/* Warning banner styling */
+.warning-banner {
+    display: none; /* Hidden by default */
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text */
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    z-index: 1000; /* Make sure it appears on top of other content */
+}
+
+.close-banner {
+    background-color: transparent;
+    color: #721c24;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
+/* Optional: Slightly animate the banner to make it slide in */
+.warning-banner {
+    transition: transform 0.5s ease;
+}
+
+.warning-banner.show {
+    display: block;
+    transform: translateY(0);
+}
+
+
+
+/* Modal styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.close {
+    float: right;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #333;
+}
+
+
+
+canvas {
+    width: 100%;
+    height: 300px;
+}
