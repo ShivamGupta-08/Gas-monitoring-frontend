@@ -133,29 +133,29 @@ document.getElementById('close-banner').onclick = function() {
                 let warningMessage = "";
 
                 // Check if both thresholds are exceeded
-                if (data.mq2Level > 400 && data.mq7Level > 30) {
+                if (data.mq2Level > 1000 && data.mq7Level > 100) {
                     document.getElementById("status").style.color = "red";
                     document.getElementById('status').innerHTML="Status: Dangerous";
                     warningMessage = 'Warning: High Levels Of Carbon Monoxide & Flammable Gas detected! Move to a safe location and seek fresh air.';
                 } 
                 // Check only MQ2 level
-                else if (data.mq2Level > 400) {
+                else if (data.mq2Level > 1000) {
                     document.getElementById("status").style.color = "red";
                     document.getElementById('status').innerHTML="Status: Dangerous";
                     warningMessage = 'Warning: High Level Of Smoke Or Flammable Gas Detected! Move to a safe location.';
                 } 
-                else if (data.mq2Level > 200 && data.mq2Level < 400) {
+                else if (data.mq2Level > 200 && data.mq2Level < 1000) {
                     document.getElementById("status").style.color = "yellow";
                     document.getElementById('status').innerHTML="Status: Risky";
                     warningMessage = 'Warning: Medium Level Of Smoke Or Flammable Gas Detected!';
                 } 
                 // Check only MQ7 level
-                else if (data.mq7Level > 30) {
+                else if (data.mq7Level > 100) {
                     document.getElementById("status").style.color = "red";
                     document.getElementById('status').innerHTML="Status: Dangerous";
                     warningMessage = 'Warning: High Level Of Carbon Monoxide Gas Detected! Seek fresh air.';
                 }
-                else if(data.mq2Level < 400 && data.mq7Level < 30){
+                else if(data.mq2Level < 200 && data.mq7Level < 100){
                     document.getElementById("status").style.color = "green";
                     document.getElementById('status').innerHTML="Status: Safe";
                 }
