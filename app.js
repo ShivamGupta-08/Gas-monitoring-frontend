@@ -50,7 +50,7 @@ document.getElementById('close-banner').onclick = function() {
                     y: {
                         title: {
                             display: true,
-                            text: ' Smoke & Flammable Gas Level'
+                            text: ' Smoke & Flammable Gas'
                         },
                         // min: 0,
                         // max: 200
@@ -86,7 +86,7 @@ document.getElementById('close-banner').onclick = function() {
                     y: {
                         title: {
                             display: true,
-                            text: 'Carbon Monoxide Level'
+                            text: 'Carbon Monoxide'
                         },
                         // min: 0,
                         // max: 200
