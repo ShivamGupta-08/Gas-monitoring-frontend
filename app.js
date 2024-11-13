@@ -5,7 +5,10 @@ let timeStamps = [];
 let previousMq2Level = 0;
 let previousMq7Level = 0;
 let isHelmetOn = true; 
-
+// Define threshold values as variables
+const MAX_MQ2_THRESHOLD = 1000;  // Max threshold for MQ2
+const MEDIUM_MQ2_THRESHOLD = 200; // Medium threshold for MQ2
+const MAX_MQ7_THRESHOLD = 100;    // Max threshold for MQ7
 // Function to show the warning banner with a combined message
 function showWarning(message, solution) {
     const warningMessage = document.getElementById('warning-message');
@@ -121,23 +124,38 @@ async function fetchData() {
         let warningMessage = "";
 
         // Determine the status and warning message based on gas levels
-        if (data.mq2Level > 1000 && data.mq7Level > 100) {
+        if (data.mq2Level > MAX_MQ2_THRESHOLD && data.mq7Level > MAX_MQ7_THRESHOLD) {
             document.getElementById("status").style.color = "red";
             document.getElementById('status').innerHTML = "Status: Dangerous";
             warningMessage = 'Warning: High Levels Of Carbon Monoxide & Flammable Gas detected! Move to a safe location and seek fresh air.';
-        } else if (data.mq2Level > 1000) {
-            document.getElementById("status").style.color = "red";
-            document.getElementById('status').innerHTML = "Status: Dangerous";
-            warningMessage = 'Warning: High Level Of Smoke Or Flammable Gas Detected! Move to a safe location.';
-        } else if (data.mq2Level > 200 && data.mq2Level < 1000) {
-            document.getElementById("status").style.color = "yellow";
-            document.getElementById('status').innerHTML = "Status: Risky";
-            warningMessage = 'Warning: Medium Level Of Smoke Or Flammable Gas Detected!';
-        } else if (data.mq7Level > 100) {
+            const alertMax = document.getElementById('alert-sound-max');
+                alertMax.currentTime = 0;
+                alertMax.play();
+        } 
+            else if (data.mq7Level > MAX_MQ7_THRESHOLD) {
             document.getElementById("status").style.color = "red";
             document.getElementById('status').innerHTML = "Status: Dangerous";
             warningMessage = 'Warning: High Level Of Carbon Monoxide Gas Detected! Seek fresh air.';
-        } else if (data.mq2Level < 200 && data.mq7Level < 100) {
+            const alertMax = document.getElementById('alert-sound-max');
+                alertMax.currentTime = 0;
+                alertMax.play();
+        }
+        else if (data.mq2Level > MAX_MQ2_THRESHOLD) {
+            document.getElementById("status").style.color = "red";
+            document.getElementById('status').innerHTML = "Status: Dangerous";
+            warningMessage = 'Warning: High Level Of Smoke Or Flammable Gas Detected! Move to a safe location.';
+            const alertMax = document.getElementById('alert-sound-max');
+                alertMax.currentTime = 0;
+                alertMax.play();
+        } else if (data.mq2Level > MEDIUM_MQ2_THRESHOLD  && data.mq2Level <= MAX_MQ2_THRESHOLD) {
+            document.getElementById("status").style.color = "yellow";
+            document.getElementById('status').innerHTML = "Status: Risky";
+            warningMessage = 'Warning: Medium Level Of Smoke Or Flammable Gas Detected!';
+            // Play the medium threshold alert sound
+                const alertMedium = document.getElementById('alert-sound-medium');
+                alertMedium.currentTime = 0;
+                alertMedium.play();
+        }  else if (data.mq2Level < MEDIUM_MQ2_THRESHOLD  && data.mq7Level < MAX_MQ7_THRESHOLD) {
             document.getElementById("status").style.color = "green";
             document.getElementById('status').innerHTML = "Status: Safe";
         }
