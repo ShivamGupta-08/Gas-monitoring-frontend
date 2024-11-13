@@ -87,11 +87,6 @@ async function fetchData() {
             return; // Exit the function to prevent further updates
         }
 
-        // Restart the interval when power is back on
-        if (data.status === "on" && !dataFetchInterval) {
-            dataFetchInterval = setInterval(fetchData, 2000); // Restart the interval
-        }
-
         // Update DOM elements with the latest data
         document.getElementById('helmet-id').textContent = data.helmetId;
         document.getElementById('mq2-level').textContent = data.mq2Level;
@@ -111,12 +106,9 @@ async function fetchData() {
             timeStamps.shift();
         }
 
-        // Ensure there is data before updating the charts
-        if (mq2Data.length > 0 && mq7Data.length > 0) {
-            // Update the charts with the new data
-            mq2Chart.update();
-            mq7Chart.update();
-        }
+        // Update the charts with the new data
+        mq2Chart.update();
+        mq7Chart.update();
 
         let warningMessage = "";
 
