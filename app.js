@@ -87,6 +87,11 @@ async function fetchData() {
             return; // Exit the function to prevent further updates
         }
 
+        // Restart the interval when power is back on
+        if (data.status === "on" && !dataFetchInterval) {
+            dataFetchInterval = setInterval(fetchData, 2000); // Restart the interval
+        }
+
         // Update DOM elements with the latest data
         document.getElementById('helmet-id').textContent = data.helmetId;
         document.getElementById('mq2-level').textContent = data.mq2Level;
@@ -117,32 +122,4 @@ async function fetchData() {
             document.getElementById("status").style.color = "red";
             document.getElementById('status').innerHTML = "Status: Dangerous";
             warningMessage = 'Warning: High Levels Of Carbon Monoxide & Flammable Gas detected! Move to a safe location and seek fresh air.';
-        } else if (data.mq2Level > 1000 ) {
-            document.getElementById("status").style.color = "red";
-            document.getElementById('status').innerHTML = "Status: Dangerous";
-            warningMessage = 'Warning: High Level Of Smoke Or Flammable Gas Detected! Move to a safe location.';
-        } else if (data.mq2Level > 200 && data.mq2Level < 1000) {
-            document.getElementById("status").style.color = "yellow";
-            document.getElementById('status').innerHTML = "Status: Risky";
-            warningMessage = 'Warning: Medium Level Of Smoke Or Flammable Gas Detected!';
-        } else if (data.mq7Level > 100) {
-            document.getElementById("status").style.color = "red";
-            document.getElementById('status').innerHTML = "Status: Dangerous";
-            warningMessage = 'Warning: High Level Of Carbon Monoxide Gas Detected! Seek fresh air.';
-        } else if (data.mq2Level < 200 && data.mq7Level < 100) {
-            document.getElementById("status").style.color = "green";
-            document.getElementById('status').innerHTML = "Status: Safe";
-        }
-
-        // Show warning if there is a message
-        if (warningMessage) {
-            showWarning(warningMessage);
-        }
-
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-}
-
-// Start data fetching every 2 seconds and store interval ID
-dataFetchInterval = setInterval(fetchData, 2000);
+        } else if (data.mq2Level 
