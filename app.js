@@ -175,7 +175,8 @@ async function fetchData() {
     } catch (error) {
         console.error('Error fetching data:', error);
     }
-  requestAnimationFrame(fetchData);
+   // Delay next update by 1 second
+    setTimeout(() => requestAnimationFrame(fetchData), 1000);
 }
 // Start the update loop
 fetchData();
