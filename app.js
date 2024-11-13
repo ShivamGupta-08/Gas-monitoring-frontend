@@ -172,7 +172,7 @@ async function fetchData() {
 }
 
 // Start data fetching every 2 seconds (interval for data update)
-setInterval(fetchData, 2000);
+setInterval(fetchData, 3000);
 
 // Initial data fetch to start the process
 fetchData();
