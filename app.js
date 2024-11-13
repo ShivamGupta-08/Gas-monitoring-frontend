@@ -87,9 +87,7 @@ async function fetchData() {
             return; // Exit the function to prevent further updates
         }
          // Restart the interval when power is back on
-        if (data.status === "on" && !dataFetchInterval) {
-            dataFetchInterval = setInterval(fetchData, 2000); // Restart the interval
-        }
+       
 
         // Update DOM elements with the latest data
         document.getElementById('helmet-id').textContent = data.helmetId;
