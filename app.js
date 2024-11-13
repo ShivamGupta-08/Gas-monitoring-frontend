@@ -4,7 +4,7 @@ let mq7Data = [];
 let timeStamps = [];
 let previousMq2Level = 0;
 let previousMq7Level = 0;
-let dataFetchInterval; // Variable to store the interval ID
+let isHelmetOn = true; 
 
 // Function to show the warning banner with a combined message
 function showWarning(message, solution) {
@@ -79,14 +79,25 @@ async function fetchData() {
         // Update the power status
         document.getElementById("power").innerText = data.status === "off" ? "Off" : "On";
 
-        // Stop updates if the helmet is off
         if (data.status === "off") {
-            clearInterval(dataFetchInterval); // Stop fetching data
-            document.getElementById("status").style.color = "gray";
-            document.getElementById('status').innerHTML = "Status: Off";
-            return; // Exit the function to prevent further updates
+            // If helmet is off, ensure status is marked as off and do not update charts
+            if (isHelmetOn) {
+                isHelmetOn = false; // Update state
+                document.getElementById("power").innerText = "Off";
+                document.getElementById("status").style.color = "gray";
+                document.getElementById('status').innerHTML = "Status: Off";
+                console.log('Helmet is off - stopping chart updates.');
+            }
+            return; // Stop further execution if helmet is off
         }
-         // Restart the interval when power is back on
+
+        // If helmet is on, resume updating charts and power status
+        if (!isHelmetOn) {
+            isHelmetOn = true; // Update state
+            document.getElementById("power").innerText = "On";
+            
+            console.log('Helmet is on - starting chart updates.');
+        }
        
 
         // Update DOM elements with the latest data
@@ -146,6 +157,8 @@ async function fetchData() {
     }
 }
 
-// Start data fetching every 2 seconds and store interval ID
-dataFetchInterval = setInterval(fetchData, 2000);
-fetchData(); // Initial fetch when page loads
+// Start data fetching every 2 seconds (interval for data update)
+setInterval(fetchData, 2000);
+
+// Initial data fetch to start the process
+fetchData();
