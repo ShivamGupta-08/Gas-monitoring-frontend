@@ -76,29 +76,24 @@ async function fetchData() {
         const response = await fetch('https://gas-sensor-backend.onrender.com/get-helmet-data/H123');  // Replace with your actual server endpoint
         const data = await response.json();
 
-        // Update the power status
-        document.getElementById("power").innerText = data.status === "off" ? "Off" : "On";
-
+         // Update power status
         if (data.status === "off") {
-            // If helmet is off, ensure status is marked as off and do not update charts
             if (isHelmetOn) {
                 isHelmetOn = false; // Update state
                 document.getElementById("power").innerText = "Off";
                 document.getElementById("status").style.color = "gray";
                 document.getElementById('status').innerHTML = "Status: Off";
-                console.log('Helmet is off - stopping chart updates.');
+                console.log('Helmet is off - no chart updates.');
             }
-            return; // Stop further execution if helmet is off
-        }
-
-        // If helmet is on, resume updating charts and power status
-        if (!isHelmetOn) {
-            isHelmetOn = true; // Update state
-            document.getElementById("power").innerText = "On";
-            
-            console.log('Helmet is on - starting chart updates.');
-        }
-       
+        } else {
+            // If helmet is on, update the UI accordingly
+            if (!isHelmetOn) {
+                isHelmetOn = true; // Update state
+                document.getElementById("power").innerText = "On";
+                document.getElementById("status").style.color = "green";
+                document.getElementById('status').innerHTML = "Status: On";
+                console.log('Helmet is on - starting chart updates.');
+            }
 
         // Update DOM elements with the latest data
         document.getElementById('helmet-id').textContent = data.helmetId;
@@ -151,6 +146,7 @@ async function fetchData() {
         if (warningMessage) {
             showWarning(warningMessage);
         }
+     }
 
     } catch (error) {
         console.error('Error fetching data:', error);
