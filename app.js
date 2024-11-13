@@ -128,7 +128,7 @@ async function fetchData() {
             document.getElementById("status").style.color = "red";
             document.getElementById('status').innerHTML = "Status: Dangerous";
             warningMessage = 'Warning: High Levels Of Carbon Monoxide & Flammable Gas detected! Move to a safe location and seek fresh air.';
-            const alertMax = document.getElementById('alert-sound-max');
+            const alertMax = document.getElementById("alertMax");
                 alertMax.currentTime = 0;
                 alertMax.play();
         } 
@@ -136,7 +136,7 @@ async function fetchData() {
             document.getElementById("status").style.color = "red";
             document.getElementById('status').innerHTML = "Status: Dangerous";
             warningMessage = 'Warning: High Level Of Carbon Monoxide Gas Detected! Seek fresh air.';
-            const alertMax = document.getElementById('alert-sound-max');
+            const alertMax = document.getElementById("alertMax");
                 alertMax.currentTime = 0;
                 alertMax.play();
         }
@@ -144,7 +144,7 @@ async function fetchData() {
             document.getElementById("status").style.color = "red";
             document.getElementById('status').innerHTML = "Status: Dangerous";
             warningMessage = 'Warning: High Level Of Smoke Or Flammable Gas Detected! Move to a safe location.';
-            const alertMax = document.getElementById('alert-sound-max');
+            const alertMax = document.getElementById("alertMax");
                 alertMax.currentTime = 0;
                 alertMax.play();
         } else if (data.mq2Level > MEDIUM_MQ2_THRESHOLD  && data.mq2Level <= MAX_MQ2_THRESHOLD) {
@@ -152,7 +152,7 @@ async function fetchData() {
             document.getElementById('status').innerHTML = "Status: Risky";
             warningMessage = 'Warning: Medium Level Of Smoke Or Flammable Gas Detected!';
             // Play the medium threshold alert sound
-                const alertMedium = document.getElementById('alert-sound-medium');
+                const alertMedium = document.getElementById("alertMedium");
                 alertMedium.currentTime = 0;
                 alertMedium.play();
         }  else if (data.mq2Level < MEDIUM_MQ2_THRESHOLD  && data.mq7Level < MAX_MQ7_THRESHOLD) {
