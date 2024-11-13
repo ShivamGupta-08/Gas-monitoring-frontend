@@ -107,7 +107,7 @@ document.getElementById('close-banner').onclick = function() {
                 // const data = responseData.data; 
                 // console.log('Fetched Data:', data);
                 // Add the data to the charts
-
+                document.getElementById("power").innerText = data.status === "off" ? "Off" : "On";
                 document.getElementById('helmet-id').textContent = data.helmetId;
                 document.getElementById('mq2-level').textContent = data.mq2Level;
                 document.getElementById('mq7-level').textContent = data.mq7Level;
