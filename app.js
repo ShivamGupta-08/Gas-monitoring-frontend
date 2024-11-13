@@ -83,7 +83,7 @@ async function fetchData() {
         if (data.status === "off") {
             if (isHelmetOn) {
                 isHelmetOn = false; // Update state
-                document.getElementById('power').textContent  = "Off";
+                document.getElementById('power').innerHTML  = "Off";
                 document.getElementById('status').style.color = "gray";
                 document.getElementById('status').innerHTML = "Status: Off";
                 console.log('Helmet is off - no chart updates.');
@@ -92,7 +92,7 @@ async function fetchData() {
             // If helmet is on, update the UI accordingly
             if (!isHelmetOn) {
                 isHelmetOn = true; // Update state
-                document.getElementById('power').textContent  = "On";
+                document.getElementById('power').innerHTML  = "On";
                 document.getElementById('status').style.color = "green";
                 document.getElementById('status').innerHTML = "Status: On";
                 console.log('Helmet is on - starting chart updates.');
