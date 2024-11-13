@@ -116,6 +116,12 @@ async function fetchData() {
             mq7Data.shift();
             timeStamps.shift();
         }
+          // Force Chart.js to re-render with the new data
+                mq2Chart.data.datasets[0].data = mq2Data;
+                mq7Chart.data.datasets[0].data = mq7Data;
+                mq2Chart.data.labels = timeStamps;
+                mq7Chart.data.labels = timeStamps;
+
 
         // Update the charts with the new data
         mq2Chart.update();
