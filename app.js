@@ -150,3 +150,4 @@ async function fetchData() {
 
 // Start data fetching every 2 seconds and store interval ID
 dataFetchInterval = setInterval(fetchData, 2000);
+fetchData(); // Initial fetch when page loads
