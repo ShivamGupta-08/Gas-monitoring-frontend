@@ -1,4 +1,4 @@
-// Prepare empty data arrays for the charts
+ // Prepare empty data arrays for the charts
 let mq2Data = [];
 let mq7Data = [];
 let timeStamps = [];
