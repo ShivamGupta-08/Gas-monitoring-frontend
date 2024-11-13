@@ -169,10 +169,7 @@ async function fetchData() {
     } catch (error) {
         console.error('Error fetching data:', error);
     }
+  requestAnimationFrame(fetchData);
 }
-
-// Start data fetching every 2 seconds (interval for data update)
-setInterval(fetchData, 3000);
-
-// Initial data fetch to start the process
+// Start the update loop
 fetchData();
