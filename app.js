@@ -6,8 +6,8 @@ let previousMq2Level = 0;
 let previousMq7Level = 0;
 let isHelmetOn = true; 
 // Define threshold values as variables
-const MAX_MQ2_THRESHOLD = 500;  // Max threshold for MQ2
-const MEDIUM_MQ2_THRESHOLD = 200; // Medium threshold for MQ2
+const MAX_MQ2_THRESHOLD = 600;  // Max threshold for MQ2
+const MEDIUM_MQ2_THRESHOLD = 300; // Medium threshold for MQ2
 const MAX_MQ7_THRESHOLD = 30;    // Max threshold for MQ7
 // Function to show the warning banner with a combined message
 function showWarning(message, solution) {
